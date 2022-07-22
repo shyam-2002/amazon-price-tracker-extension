@@ -1,0 +1,39 @@
+
+.container{
+    position: absolute;
+    left: 130px;
+    top: 250px;
+ 
+ }
+ .dot{
+     /* position: absolute; */
+     /* align-items: center; */
+     width: 10px;
+     height: 10px;	
+     display: inline-block;
+     border-radius: 50%;
+     
+ }
+ .dot1{
+     background-color: #1abc9c;
+     animation: jump-up 0.6s 0.1s linear infinite;
+ }
+ .dot2{
+     position: relative;
+     left: 5px;
+     background-color: #ffd64a;
+     animation: jump-up 0.6s 0.2s linear infinite;
+ }
+ .dot3{
+     position: relative;
+     left: 10px;
+     background-color: #e067af;
+     animation: jump-up 0.6s 0.3s linear infinite;
+ }
+ 
+ @Keyframes jump-up{
+     50%{
+         transform: translate(0,15px);
+     }
+ }
+ 

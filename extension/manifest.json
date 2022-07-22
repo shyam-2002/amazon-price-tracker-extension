@@ -1,0 +1,35 @@
+{
+    "manifest_version": 2,
+    "name": "Amazon Price Tracker",
+    "version": "0.1",
+    "description": "An extension which helps you to track prices of items available on Amazon",
+    "icons": {
+        "16": "amazon.png",
+        "48": "amazon.png"
+    },
+    "browser_action": {
+        "default_popup": "popup.html",
+        "default_icon": "amazon.png"
+    },
+    "content_scripts": [
+        {
+            "matches": [
+                "https://www.amazon.in/*"
+            ],
+            "js": [
+                "content.js"
+            ]
+        }
+    ],
+    "background": {
+        "scripts": [
+            "background.js"
+        ],
+        "persistent": false
+    },
+    "permissions": [
+        "http://localhost:3000/*",
+        "storage",
+        "https://www.amazon.in/*"
+    ]
+}

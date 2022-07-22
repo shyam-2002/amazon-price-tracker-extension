@@ -1,0 +1,248 @@
+@import url(https://fonts.googleapis.com/css?family=Roboto:400,300,500);
+*:focus {
+  outline: none;
+}
+
+
+body {
+  height: 700px;
+  margin: 0;
+  padding: 0;
+  background: #FFF;
+  font-size: 16px;
+  color: #222;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 300;
+}
+
+.header{
+  height: 40px;
+}
+
+.cross{
+  position: absolute;
+  top: 2px;
+  right: 12px;
+  color: black;
+font-size: 35px;
+  cursor: pointer;
+}
+
+.amazon_logo{
+  width: 80px;
+  height: 60px;
+  position: relative;
+  left : 5px;
+  top: 0px;
+}
+
+#login-box {
+  position: relative;
+  margin: 5% auto;
+  width: 295px;
+  min-height: 700px;
+  
+  height: auto;
+  background: #FFF;
+  border-radius: 2px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+}
+
+.left {
+  position: absolute;
+  top: 0;
+  left: 0;
+  box-sizing: border-box;
+  padding: 40px;
+  width: 300px;
+  height: 400px;
+}
+
+h1 {
+  margin: 0 0 20px 0;
+  font-weight: 300;
+  font-size: 28px;
+}
+
+input[type="email"],
+input[type="password"], 
+input[type = "text"] {
+  display: block;
+  box-sizing: border-box;
+  margin-bottom: 20px;
+  padding: 4px;
+  width: 220px;
+  height: 32px;
+  border: none;
+  border-bottom: 1px solid #AAA;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 400;
+  font-size: 15px;
+  transition: 0.2s ease;
+}
+
+input[type="email"]:focus,
+input[type="password"]:focus,
+input[type="text"]:focus  {
+  border-bottom: 2px solid #16a085;
+  color: #16a085;
+  transition: 0.2s ease;
+}
+
+.submit{
+  margin-top: 24px;
+ 
+  height: 32px;
+  background: #16a085;
+  border: none;
+  border-radius: 2px;
+  color: #FFF;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 500;
+  text-transform: uppercase;
+  transition: 0.1s ease;
+  cursor: pointer;
+}
+
+.submit,
+.submit:focus {
+  opacity: 0.8;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+  transition: 0.1s ease;
+}
+
+.submit{
+  opacity: 1;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.4);
+  transition: 0.1s ease;
+}
+
+.submit .signup_submit{
+  width: 120px;
+}
+
+.to_signup{
+  width: 140px;
+  background-color: blue;
+}
+
+.to_login{
+  width: auto;
+  background-color: blue;
+}
+
+/* handeling errors */
+
+
+.errors{
+  color: red;
+  font-weight: 300;
+}
+
+
+
+/* user data */
+
+
+.nothing_to_track{
+  text-decoration: none;
+  color: #16a085;
+  position: relative;
+  text-align: center;
+  top: 10px;
+  font-weight: 300;
+}
+
+
+.linking  {
+  text-decoration: none;
+  color: black;
+  font-weight: 500;
+  font-size: 18px;
+}
+
+.list{
+  position: relative;
+  left: -10px;
+}
+
+.linking :hover{
+  text-decoration: none;
+  color: hotpink;
+}
+
+.remove{
+  position: absolute;
+  right : 10px;
+  color: blue;
+  font-weight: 400;
+  cursor: pointer;
+}
+
+.price{
+  position: relative;
+  top: 15px;
+  left: -10px;
+  color: rgb(55, 177, 184);
+  font-weight: 400;
+}
+
+.threshprice{
+  position: relative;
+  top: 10px;
+  left: -10px;
+   color: #72520d;
+   font-weight: 400;
+}
+
+
+.break{
+  position: relative;
+  top: 25px;
+  left: -40px;
+  width: 130%;
+  height: 2px;
+  background-color: pink;
+}
+
+
+/* footer navigation bar */
+
+.navbar{
+    background-color: #fff;
+  overflow: hidden;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+}
+
+.navbar button {
+    float: left;
+    display: block;
+    color: #FFF;
+    text-align: center;
+    padding: 8px 33px;
+    text-decoration: none;
+    font-size: 17px;
+  }
+
+  .navbar button:hover {
+    background-color:#f2f2f2;
+    color: black;
+    /* cursor : pointer; */
+  }
+
+  /* .navbar button.active {
+    background-color: #04AA6D;
+    color: white;
+  } */
+
+  .home-dim {
+    background-color : #f2f2f2;
+    cursor: not-allowed;
+  }
+
+  .search-dim{
+    background-color : #f2f2f2;
+    cursor: not-allowed;
+  }

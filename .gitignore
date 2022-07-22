@@ -1,0 +1,4 @@
+server/.dockerignore
+server/node_modules
+server/.env
+server/Dockerfile

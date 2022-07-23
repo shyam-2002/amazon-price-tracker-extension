@@ -17,7 +17,7 @@ This repo contains code of a simple amazon-price-tracker extension and server. U
 * In extension/popup.js, extension/background.js and extension/content.js files change the baseURL to `http://localhost:8080/`.  
 * Now run the following command in server directory to start node-server:
 <pre>nodemon app</pre>
-* Load the extension directory using chrome developer tools.
+* Load the extension using chrome developer tools.
 
 
 

@@ -33,7 +33,7 @@ let log_sign = async (request, response, url) => {
 }
 
 let add_product = async (request,sender, response)=>{
-    let ob = {name : request.name, url : request.url, current_price : request.currPrice, threshold_price : request.threshPrice, userId : request.userid}
+    let ob = {name : request.name, url : request.url, seller : request.seller, current_price : request.currPrice, threshold_price : request.threshPrice, userId : request.userid}
     try {
         let resp = await fetch(`${baseURL}/addproduct`, {
             method: "POST",

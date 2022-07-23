@@ -54,6 +54,11 @@ chrome.storage.sync.get(["users", "selected_items"], (data) => {
                     ob.currPrice = parseInt(e2.innerHTML.substring(7).replaceAll(",", ""));
                 }
                 ob.url = window.location.href;
+                if(ob.url.includes("https://www.amazon.in")){
+                    ob.seller = "amazon";
+                }else if(ob.url.includes("https://www.flipkart.com")){
+                    ob.seller = "flipkart";
+                }
                 ob.name = el.innerText.substring(0, 15);
                 ob.name += "..."
                 console.log(ob);

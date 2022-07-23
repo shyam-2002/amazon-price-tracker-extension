@@ -2,70 +2,90 @@
 // let baseURL = `http://amazon-pricer-tracker-server-599563671.ap-south-1.elb.amazonaws.com`;
 let port = 3000;
 let baseURL = `http://localhost:3000/v1`;
+let flipkart_price_selector = "._30jeq3";
+let amazon_price_selector = ".a-offscreen";
+
+
+let find_price = (price_str)=>{
+    if(price_str === undefined || price_str === "unavailable"){
+        return null;
+    }else{
+        return price_str.substr(1).replaceAll(",", "");
+    }
+
+}
+
+
+let find_price_str = (seller) => {
+    let el;
+    if (seller === 'flipkart') {
+        el = document.querySelector(flipkart_price_selector);
+    } else if (seller === 'amazon') {
+        el = document.querySelector(amazon_price_selector);
+    }
+    return el.innerHTML;
+}
+
+
 
 chrome.storage.sync.get(["users", "selected_items"], (data) => {
 
     if (data.users.length == 1) {
 
-        const el = document.querySelector("#productTitle");
+        const product_title_el = document.querySelector("#productTitle");
 
         let product_addition = ()=>{
 
         let form_el = document.createElement("form");
         form_el.classList.add("form");
 
-        let new_el = document.createElement("button");
-        new_el.appendChild(document.createTextNode("Add to track"));
+        let button_el = document.createElement("button");
+        button_el.appendChild(document.createTextNode("Add to track"));
 
-        const new_el2 = document.createElement("input");
-        new_el2.appendChild(document.createTextNode(""));
-        new_el2.placeholder = "Enter the threshold value";
-        new_el2.required = true;
-        new_el2.classList.add("thresh_val");
+        const threshold_price_el = document.createElement("input");
+        threshold_price_el.type = "number";
+        threshold_price_el.appendChild(document.createTextNode(""));
+        threshold_price_el.placeholder = "Enter the threshold value";
+        threshold_price_el.required = true;
+        threshold_price_el.classList.add("thresh_val");
 
-        const newel3 = document.createElement("br");
+        const br_el = document.createElement("br");
 
         const error_el = document.createElement("div");
 
-        form_el.appendChild(new_el2);
+        form_el.appendChild(threshold_price_el);
         form_el.appendChild(error_el);
-        form_el.appendChild(new_el);
+        form_el.appendChild(button_el);
 
-        el.appendChild(newel3);
-        el.appendChild(form_el);
+        product_title_el.appendChild(br_el);
+        product_title_el.appendChild(form_el);
 
         let ob = { type: "add_product", url: "https://www.amazon.in/Redmi-Sporty-Orange-64GB-Storage/dp/B08696W3B3/ref=sr_1_1?dchild=1&keywords=redmi+note+7&qid=1625587510&sr=8-1", name: "redmi note 7", currPrice: 11000, threshPrice: 10000, userid: data.users[0].id };
-        new_el.addEventListener("click", async (e) => {
+        button_el.addEventListener("click", async (e) => {
             e.preventDefault();
             error_el.innerHTML = "";
-            if (new_el2.value == "") {
+            if (threshold_price_el.value == "") {
                 error_el.innerHTML = "Please enter some value";
                 error_el.style = "color : Red; font-weight : 350";
             }
             else {
-                new_el.innerText = "Adding...";
-                ob.threshPrice = new_el2.value;
-                let e1 = document.querySelector(".a-offscreen");
-                let e2 = document.querySelector("#priceblock_ourprice");
-                if (e1) {
-                    ob.currPrice = parseInt(e1.innerHTML.substring(7).replaceAll(",", ""));
-                }
-                else {
-                    ob.currPrice = parseInt(e2.innerHTML.substring(7).replaceAll(",", ""));
-                }
+                button_el.innerText = "Adding...";
+                ob.threshPrice = threshold_price_el.value.replace(",", "");
+                ob.name = product_title_el.innerText.substring(0, 15);
+                ob.name += "..."
                 ob.url = window.location.href;
                 if(ob.url.includes("https://www.amazon.in")){
                     ob.seller = "amazon";
                 }else if(ob.url.includes("https://www.flipkart.com")){
                     ob.seller = "flipkart";
                 }
-                ob.name = el.innerText.substring(0, 15);
-                ob.name += "..."
-                console.log(ob);
+                let price_str = find_price_str(ob.seller);
+                ob.currPrice = find_price(price_str);
+
                 chrome.runtime.sendMessage(ob, (response) => {
                     if (response.success) {
-                        new_el.innerHTML = "Added";
-                        new_el.disabled = true;
+                        button_el .innerHTML = "Added";
+                        button_el .disabled = true;
                     }
                     else {
                         //code to handle errors
@@ -90,13 +110,12 @@ chrome.storage.sync.get(["users", "selected_items"], (data) => {
         })
         .then(response=>{
             if(response.data.available){
-                let new_el = document.createElement("button");
-                new_el.appendChild(document.createTextNode("Added"));
-
-                let br_el = document.createElement('br');
-                el.appendChild(br_el);
-                el.appendChild(new_el);
-                new_el.disabled = true;
+                let button_el = document.createElement("button");
+                button_el.appendChild(document.createTextNode("Added"));
+                const br_el = document.createElement("br");
+                product_title_el.appendChild(br_el);
+                product_title_el.appendChild(button_el);
+                button_el.disabled = true;
             }
             else{
                 product_addition();

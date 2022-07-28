@@ -1,7 +1,8 @@
 // let port = 8080;
 // let baseURL = `http://amazon-pricer-tracker-server-599563671.ap-south-1.elb.amazonaws.com`;
 let port = 3000;
-let baseURL = `http://localhost:3000/v1`;
+let baseURL = `http://awseb-awseb-lld2fl9uz4gd-316441135.ap-south-1.elb.amazonaws.com/v1/`;
+// let baseURL = `http://localhost:3000/v1/`;
 
 
 chrome.runtime.onInstalled.addListener(details=>{

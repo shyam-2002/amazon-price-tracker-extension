@@ -1,8 +1,8 @@
 // let port = 8080;
 // let baseURL = `http://amazon-pricer-tracker-server-599563671.ap-south-1.elb.amazonaws.com`;
 let port = 3000;
-let baseURL = `http://awseb-awseb-lld2fl9uz4gd-316441135.ap-south-1.elb.amazonaws.com/v1/`;
-// let baseURL = `http://localhost:3000/v1/`;
+// let baseURL = `http://awseb-awseb-lld2fl9uz4gd-316441135.ap-south-1.elb.amazonaws.com/v1/`;
+let baseURL = `http://localhost:3000/v1/`;
 let flipkart_price_selector = "._30jeq3";
 let amazon_price_selector = ".a-offscreen";
 
@@ -11,7 +11,7 @@ let find_price = (price_str)=>{
     if(price_str === undefined || price_str === "unavailable"){
         return null;
     }else{
-        return price_str.substr(1).replaceAll(",", "");
+        return Math.floor(parseFloat(price_str.substr(1).replaceAll(",", "")));
     }
 
 }

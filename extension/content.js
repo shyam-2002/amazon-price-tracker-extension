@@ -1,8 +1,8 @@
 // let port = 8080;
 // let baseURL = `http://amazon-pricer-tracker-server-599563671.ap-south-1.elb.amazonaws.com`;
 let port = 3000;
-// let baseURL = `http://awseb-awseb-lld2fl9uz4gd-316441135.ap-south-1.elb.amazonaws.com/v1/`;
-let baseURL = `http://localhost:3000/v1/`;
+let baseURL = `http://awseb-awseb-lld2fl9uz4gd-316441135.ap-south-1.elb.amazonaws.com/v1`;
+// let baseURL = `http://localhost:3000/v1/`;
 let flipkart_price_selector = "._30jeq3";
 let amazon_price_selector = ".a-offscreen";
 
@@ -98,18 +98,10 @@ chrome.storage.sync.get(["users", "selected_items"], (data) => {
         }
 
 
-        let temp = {url : window.location.href, userId : data.users[0].id};
+        let temp = {type : "verify_product", url : window.location.href, userId : data.users[0].id};
 
 
-        fetch(`${baseURL}/verifyProduct`, {
-            method : "POST",
-            body : JSON.stringify(temp),
-            headers : {"Content-type" : "application/json"}
-        })
-        .then(res=>{
-            return res.json();
-        })
-        .then(response=>{
+        chrome.runtime.sendMessage(temp, (response) => {
             if(response.data.available){
                 let button_el = document.createElement("button");
                 button_el.appendChild(document.createTextNode("Added"));
@@ -122,9 +114,5 @@ chrome.storage.sync.get(["users", "selected_items"], (data) => {
                 product_addition();
             }
         })
-        .catch(err=>{
-            console.log(err);
-        })
-
     }
 })

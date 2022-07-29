@@ -1,7 +1,7 @@
 // let port = 8080;
 // let baseURL = `http://amazon-pricer-tracker-server-599563671.ap-south-1.elb.amazonaws.com`;
 let port = 3000;
-let baseURL = `http://awseb-awseb-lld2fl9uz4gd-316441135.ap-south-1.elb.amazonaws.com/v1/`;
+let baseURL = `http://awseb-awseb-lld2fl9uz4gd-316441135.ap-south-1.elb.amazonaws.com/v1`;
 // let baseURL = `http://localhost:3000/v1/`;
 
 
@@ -77,6 +77,30 @@ let remove_item = async (request, sender, response) => {
 }
 
 
+let verify_product = async (request, sender, response) => {
+    let obj = { url : request.url, userId : request.userId };
+    console.log(obj);
+    try {
+        let resp = await fetch(`${baseURL}/verifyProduct`, {
+            method: "POST",
+            body: JSON.stringify(obj),
+            headers: { "Content-type": "application/json" }
+        });
+        let res = await resp.json();
+        let data = res.data;
+        if(res.success === true){
+            response({data : data});
+        }else{
+            response({data : {available: false}});
+        }
+    }
+    catch (err) {
+        console.log(err);
+        response({data : {available: false}});
+    }
+}
+
+
 chrome.runtime.onMessage.addListener((request, sender, response) => {
     if (request.type === "log_sign") {
         if (request.username) {
@@ -93,6 +117,9 @@ chrome.runtime.onMessage.addListener((request, sender, response) => {
     }
     else if (request.type === "remove_item") {
         remove_item(request, sender, response);
+        return true;
+    }else if(request.type === "verify_product"){
+        verify_product(request, sender, response);
         return true;
     }
 

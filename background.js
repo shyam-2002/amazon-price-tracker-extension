@@ -3,11 +3,14 @@
 let port = 3000;
 let baseURL = `https://www.price-tracker.info/v1`;
 // let baseURL = `http://localhost:3000/v1/`;
-
+let manual_url = 'https://drive.google.com/file/d/1Ga_6jS2b8DtkMMjYigRZKFaBb2zkWsmm/view?usp=share_link';
 
 chrome.runtime.onInstalled.addListener(details=>{
     console.log(details.reason);
     chrome.storage.sync.set({users : []});
+    chrome.tabs.create({ url: manual_url }, function (tab) {
+        console.log("New tab launched with user manual");
+    });
 })
 
 let log_sign = async (request, response, url) => {

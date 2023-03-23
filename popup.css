@@ -15,40 +15,53 @@ body {
   font-weight: 300;
 }
 
-.header{
+
+
+.header {
+  position: fixed;
+  top: 0;
+  z-index: 1;
   height: 40px;
+  width: 100%;
+  margin: 0;
+  padding: 0.5rem;
+  background-color: white;
 }
 
-.cross{
-  position: absolute;
-  top: 2px;
-  right: 12px;
-  color: black;
-font-size: 35px;
-  cursor: pointer;
-}
-
-.question{
-  position: absolute;
-  top: 12px;
-  right: 55px;
-  color: rgb(172, 4, 4);
-  font-size: 20px;
-  font-weight: bold;
-  cursor: pointer;
-}
-
-.amazon_logo{
-  width: 80px;
-  height: 60px;
+.amazon_logo {
+  width: 60px;
+  height: 40px;
   position: relative;
-  left : 5px;
-  top: 0px;
+  top: 2px;
+  left: 10px;
+}
+
+.question {
+  position: relative;
+  /* top: 2px; */
+  /* right: 20px; */
+  bottom: 12px;
+  left: 140px;
+  font-size: 20px;
+}
+
+.cross {
+  position: relative;
+  /* top: 2px; */
+  /* right: 10px; */
+  bottom: 12px;
+  left: 170px;
+  font-size: 30px;
+}
+
+.question a{
+  /* text-decoration: none; */
+  font-weight: 500;
 }
 
 #login-box {
   position: relative;
-  margin: 5% auto;
+  margin: 8% auto;
   width: 295px;
   min-height: 700px;
   

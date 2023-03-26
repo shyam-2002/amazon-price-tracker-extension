@@ -53,7 +53,7 @@ window.onload = async () => {
         if (item_data.data.length) {
             let selected_item_html = "<ul style = 'list-style : none;'>"
             item_data.data.forEach(item => {
-                selected_item_html += `<br><br><li class = "list"><a href = "${item.url}" target = "_blank" class = "linking">${item.name}</a><a class = "remove" data-id = ${item._id}>Remove</a><br><ul><li class = "price">current price : ${item.currentPrice} INR</li><br><li class= "threshprice">threshold Price : ${item.thresholdPrice} INR</li></ul></li><hr class = "break">`;
+                selected_item_html += `<br><br><li class = "list"><a href = "${item.url}" target = "_blank" class = "linking">${item.name}</a><a class = "remove" data-id = ${item._id}>Remove</a><br><ul><li class = "price">current price : ${item.currentPrice} INR</li><br><li class= "threshprice">threshold Price : ${item.thresholdPrice} INR</li></ul><hr class = "break"></li>`;
             })
             selected_item_html += "</ul><br><br>";
             box.innerHTML = selected_item_html;
